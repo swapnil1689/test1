@@ -1,0 +1,30 @@
+{
+  "name": "@contentful/apps",
+  "private": true,
+  "devDependencies": {
+    "prettier": "2.6.2",
+    "husky": "^7.0.0",
+    "lint-staged": "^12.0.2"
+  },
+  "scripts": {
+    "bootstrap": "lerna bootstrap --no-ci",
+    "bootstrap:ci": "lerna bootstrap --ci --concurrency=3",
+    "clean": "lerna clean",
+    "lint": "lerna run lint --concurrency=3",
+    "build": "lerna run build --concurrency=1 --stream",
+    "test": "lerna run test:ci --concurrency=1 --stream",
+    "deploy": "lerna run deploy --concurrency=3",
+    "deploy:test": "lerna run deploy:test --concurrency=3",
+    "publish-packages": "lerna version --conventional-commits --create-release github --yes && lerna publish from-git --yes",
+    "prettier": "prettier --no-editorconfig --no-error-on-unmatched-pattern --write {apps,packages,examples}/**/*.{js,jsx,ts,tsx}",
+    "prepare": "husky install"
+  },
+  "dependencies": {
+    "lerna": "4.0.0"
+  },
+  "lint-staged": {
+    "*.{t,j}s?(x)": [
+      "prettier --write"
+    ]
+  }
+}
